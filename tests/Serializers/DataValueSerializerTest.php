@@ -2,6 +2,11 @@
 
 namespace Tests\DataValues\Serializers;
 
+use DataValues\DataValue;
+use DataValues\NumberValue;
+use DataValues\Serializers\DataValueSerializer;
+use DataValues\StringValue;
+
 /**
  * @covers DataValues\Serializers\DataValueSerializer
  *
@@ -10,8 +15,42 @@ namespace Tests\DataValues\Serializers;
  */
 class DeserializerFactoryTest extends \PHPUnit_Framework_TestCase {
 
-	public function testTestRuns() {
-		$this->assertTrue(true);
+	/**
+	 * @dataProvider notADataValueProvider
+	 */
+	public function testGivenNonDataValue_IsSerializerForReturnsFalse( $notAnObject ) {
+		$serializer = new DataValueSerializer();
+
+		$this->assertFalse( $serializer->isSerializerFor( $notAnObject ) );
+	}
+
+	public function notADataValueProvider() {
+		return array(
+			array( 0 ),
+			array( null ),
+			array( '' ),
+			array( array() ),
+			array( true ),
+			array( 4.2 ),
+			array( (object)array() ),
+			array( new \Exception() ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataValueProvider
+	 */
+	public function testGivenDataValue_IsSerializerForReturnsTrue( DataValue $dataValue ) {
+		$serializer = new DataValueSerializer();
+
+		$this->assertTrue( $serializer->isSerializerFor( $dataValue ) );
+	}
+
+	public function dataValueProvider() {
+		return array(
+			array( new StringValue( 'foo' ) ),
+			array( new NumberValue( 42 ) ),
+		);
 	}
 
 }
