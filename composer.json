@@ -1,0 +1,43 @@
+{
+	"name": "data-values/serialization",
+	"type": "library",
+	"description": "Serializers and deserializers for DataValue implementations",
+	"keywords": [
+		"datavalues",
+		"wikidata",
+		"serialization",
+		"serializers",
+		"deserializers"
+	],
+	"homepage": "https://github.com/DataValues/Geo",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Jeroen De Dauw",
+			"email": "jeroendedauw@gmail.com",
+			"homepage": "http://jeroendedauw.com",
+			"role": "Developer"
+		},
+		{
+			"name": "The Wikidata team",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://bugzilla.wikimedia.org/",
+		"irc": "irc://irc.freenode.net/wikidata"
+	},
+	"require": {
+		"php": ">=5.3.0",
+		"data-values/data-values": "~0.1",
+		"serialization/serialization": "~2.0"
+	},
+	"autoload": {
+		"files" : [
+			"Serialization.php"
+		],
+		"psr-0": {
+			"DataValues\\": "src"
+		}
+	}
+}
