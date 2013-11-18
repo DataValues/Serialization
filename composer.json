@@ -32,7 +32,8 @@
 			"Serialization.php"
 		],
 		"psr-0": {
-			"DataValues\\": "src"
+			"DataValues\\Serializers\\": "src",
+			"DataValues\\Deserializers\\": "src"
 		}
 	}
 }
