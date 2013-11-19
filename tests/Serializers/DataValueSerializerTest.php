@@ -53,4 +53,27 @@ class DeserializerFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider notADataValueProvider
+	 */
+	public function testWhenGivenNonDataValue_SerializeThrowsException( $notAnObject ) {
+		$serializer = new DataValueSerializer();
+
+		$this->setExpectedException( 'Serializers\Exceptions\SerializationException' );
+		$serializer->serialize( $notAnObject );
+	}
+
+	public function testWhenGivenDataValue_SerializeCallsToArray() {
+		$returnValue = 'expected return value';
+
+		$serializer = new DataValueSerializer();
+
+		$dataValue = $this->getMock( 'DataValues\DataValue' );
+		$dataValue->expects( $this->once() )
+			->method( 'toArray' )
+			->will( $this->returnValue( $returnValue ) );
+
+		$this->assertEquals( $returnValue, $serializer->serialize( $dataValue ) );
+	}
+
 }

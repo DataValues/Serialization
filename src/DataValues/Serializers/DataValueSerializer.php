@@ -3,6 +3,7 @@
 namespace DataValues\Serializers;
 
 use DataValues\DataValue;
+use Serializers\Exceptions\UnsupportedObjectException;
 use Serializers\Serializer;
 
 /**
@@ -17,7 +18,18 @@ class DataValueSerializer implements Serializer {
 	 * @see Serializer::serialize
 	 */
 	public function serialize( $object ) {
+		if ( $this->isSerializerFor( $object ) ) {
+			return $this->getSerializedDataValue( $object );
+		}
 
+		throw new UnsupportedObjectException(
+			$object,
+			'DataValueSerializer can only serialize DataValue objects'
+		);
+	}
+
+	protected function getSerializedDataValue( DataValue $dataValue ) {
+		return $dataValue->toArray();
 	}
 
 	/**
