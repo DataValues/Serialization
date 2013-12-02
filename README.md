@@ -58,3 +58,4 @@ Initial release with these features:
 
 * [DataValues Serialization on Packagist](https://packagist.org/packages/data-values/serialization)
 * [DataValues Serialization on TravisCI](https://travis-ci.org/DataValues/Serialization)
+* [DataValues Serialization on ScrutinizerCI](https://scrutinizer-ci.com/g/DataValues/Serialization/)
