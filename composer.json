@@ -28,9 +28,6 @@
 		"serialization/serialization": "~2.0"
 	},
 	"autoload": {
-		"files" : [
-			"Serialization.php"
-		],
 		"psr-0": {
 			"DataValues\\Serializers\\": "src",
 			"DataValues\\Deserializers\\": "src"
