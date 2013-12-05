@@ -48,12 +48,16 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
-### 0.1 (dev)
+### 0.1 (2013-12-05)
 
 Initial release with these features:
 
-* DataValues\Serializers\DataValueSerializer - Adapter that fits the toArray method of DataValue objects to the Serializer interface. This allows users to move to using the Serializer interface and remove their exposure to how serialization of DataValues is implemented.
-* DataValues\Deserializers\DataValueDeserializer - Adapter that fits the newFromArray method of DataValues objects to the Deserializer interface. This allows users to remove the knowledge they have of how deserialization is implemented and break their dependency on DataValueFactory.
+* DataValues\Serializers\DataValueSerializer - Adapter that fits the toArray method of DataValue
+objects to the Serializer interface. This allows users to move to using the Serializer interface
+and remove their exposure to how serialization of DataValues is implemented.
+* DataValues\Deserializers\DataValueDeserializer - Adapter that fits the newFromArray method of
+DataValues objects to the Deserializer interface. This allows users to remove the knowledge they
+have of how deserialization is implemented and break their dependency on DataValueFactory.
 
 ## Links
 
