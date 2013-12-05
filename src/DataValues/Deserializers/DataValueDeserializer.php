@@ -4,11 +4,9 @@ namespace DataValues\Deserializers;
 
 use Deserializers\Deserializer;
 use Deserializers\Exceptions\DeserializationException;
-use Deserializers\Exceptions\InvalidAttributeException;
 use Deserializers\Exceptions\MissingAttributeException;
 use Deserializers\Exceptions\MissingTypeException;
 use Deserializers\Exceptions\UnsupportedTypeException;
-use Deserializers\TypedObjectDeserializer;
 use InvalidArgumentException;
 use RuntimeException;
 
