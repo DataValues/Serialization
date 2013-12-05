@@ -13,7 +13,7 @@ use DataValues\StringValue;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DeserializerFactoryTest extends \PHPUnit_Framework_TestCase {
+class DataValueSerializerTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider notADataValueProvider
