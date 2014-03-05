@@ -48,6 +48,12 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.0 (2014-03-05)
+
+* Switched usage of the Serialization component from version ~2.1 to version ~3.0.
+* Switched from PSR-0 based autoloading to PSR-4 based autoloading
+* Made PHPUnit bootstrap file compatible with Windows
+
 ### 0.1 (2013-12-05)
 
 Initial release with these features:

@@ -3,8 +3,8 @@
 namespace DataValues\Serializers;
 
 use DataValues\DataValue;
+use Serializers\DispatchableSerializer;
 use Serializers\Exceptions\UnsupportedObjectException;
-use Serializers\Serializer;
 
 /**
  * @since 0.1
@@ -12,7 +12,7 @@ use Serializers\Serializer;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DataValueSerializer implements Serializer {
+class DataValueSerializer implements DispatchableSerializer {
 
 	/**
 	 * @see Serializer::serialize
@@ -33,7 +33,7 @@ class DataValueSerializer implements Serializer {
 	}
 
 	/**
-	 * @see Serializer::isSerializerFor
+	 * @see DispatchableSerializer::isSerializerFor
 	 */
 	public function isSerializerFor( $object ) {
 		return is_object( $object ) && $object instanceof DataValue;
