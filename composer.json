@@ -28,9 +28,9 @@
 		"serialization/serialization": "~2.1"
 	},
 	"autoload": {
-		"psr-0": {
-			"DataValues\\Serializers\\": "src",
-			"DataValues\\Deserializers\\": "src"
+		"psr-4": {
+			"DataValues\\Serializers\\": "src/Serializers",
+			"DataValues\\Deserializers\\": "src/Deserializers"
 		}
 	}
 }
