@@ -2,7 +2,7 @@
 
 namespace DataValues\Deserializers;
 
-use Deserializers\Deserializer;
+use Deserializers\DispatchableDeserializer;
 use Deserializers\Exceptions\DeserializationException;
 use Deserializers\Exceptions\MissingAttributeException;
 use Deserializers\Exceptions\MissingTypeException;
@@ -16,7 +16,7 @@ use RuntimeException;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DataValueDeserializer implements Deserializer {
+class DataValueDeserializer implements DispatchableDeserializer {
 
 	const TYPE_KEY = 'type';
 	const VALUE_KEY = 'value';
@@ -46,7 +46,7 @@ class DataValueDeserializer implements Deserializer {
 	}
 
 	/**
-	 * @see Deserializer::isDeserializerFor
+	 * @see DispatchableDeserializer::isDeserializerFor
 	 */
 	public function isDeserializerFor( $serialization ) {
 		$this->serialization = $serialization;
