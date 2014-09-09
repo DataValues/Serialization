@@ -158,6 +158,18 @@ class DataValueDeserializerTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testInvalidValueSerialization_throwsDeserializationException() {
+		$serialization = array(
+			'value' => array( 0, 0 ),
+			'type' => 'string',
+			'error' => 'omg an error!'
+		);
+
+		$deserializer = $this->newDeserializer();
+		$this->setExpectedException( 'Deserializers\Exceptions\DeserializationException' );
+		$deserializer->deserialize( $serialization );
+	}
+
 	/**
 	 * @dataProvider dataValueSerializationProvider
 	 */
