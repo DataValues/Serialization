@@ -7,6 +7,7 @@ It is part of the [DataValues set of libraries](https://github.com/DataValues).
 [![Build Status](https://secure.travis-ci.org/DataValues/Serialization.png?branch=master)](http://travis-ci.org/DataValues/Serialization)
 [![Code Coverage](https://scrutinizer-ci.com/g/DataValues/Serialization/badges/coverage.png?s=3e52443ffbf18b98804feb7c02ba4416f3f986cb)](https://scrutinizer-ci.com/g/DataValues/Serialization/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/DataValues/Serialization/badges/quality-score.png?s=818787ea88853bbfb76dc226eb4ab755729141c5)](https://scrutinizer-ci.com/g/DataValues/Serialization/)
+[![Dependency Status](https://www.versioneye.com/php/data-values:serialization/badge.png)](https://www.versioneye.com/php/data-values:serialization)
 
 On [Packagist](https://packagist.org/packages/data-values/serialization):
 [![Latest Stable Version](https://poser.pugx.org/data-values/serialization/version.png)](https://packagist.org/packages/data-values/serialization)
