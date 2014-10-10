@@ -49,6 +49,10 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.0.2 (2014-10-10)
+
+* Made component installable together with DataValues 1.x
+
 ### 1.0.1 (2014-09-09)
 
 * Handle IllegalValueException in DataValueDeserializer
