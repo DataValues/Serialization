@@ -2,7 +2,6 @@
 
 namespace DataValues\Deserializers;
 
-use DataValues\IllegalValueException;
 use Deserializers\DispatchableDeserializer;
 use Deserializers\Exceptions\DeserializationException;
 use Deserializers\Exceptions\MissingAttributeException;
@@ -22,9 +21,16 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	const TYPE_KEY = 'type';
 	const VALUE_KEY = 'value';
 
+	/**
+	 * @var string[] Associative array of data type id => DataValue class name.
+	 */
 	private $classes;
+
 	private $serialization;
 
+	/**
+	 * @param string[] $dataValueClasses Associative array of data type id => DataValue class name.
+	 */
 	public function __construct( array $dataValueClasses = array() ) {
 		$this->assertAreDataValueClasses( $dataValueClasses );
 		$this->classes = $dataValueClasses;
@@ -105,15 +111,14 @@ class DataValueDeserializer implements DispatchableDeserializer {
 
 		try {
 			return $class::newFromArray( $this->getValue() );
-		}
-		catch ( InvalidArgumentException $ex ) {
-			throw new DeserializationException( $ex->getMessage(), $ex );
-		}
-		catch ( IllegalValueException $ex ) {
+		} catch ( InvalidArgumentException $ex ) {
 			throw new DeserializationException( $ex->getMessage(), $ex );
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	private function getClass() {
 		return $this->classes[$this->getType()];
 	}
