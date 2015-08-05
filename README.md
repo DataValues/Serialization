@@ -49,6 +49,11 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.0.3 (2015-08-05)
+
+* Removed duplicate catch clause
+* Removed `composer update` from the PHPUnit bootstrap file
+
 ### 1.0.2 (2014-10-10)
 
 * Made component installable together with DataValues 1.x
