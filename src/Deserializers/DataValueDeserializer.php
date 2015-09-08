@@ -29,8 +29,6 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	 */
 	private $builders;
 
-	private $serialization;
-
 	/**
 	 * @since 0.1, callables are supported since 1.1
 	 *
@@ -72,10 +70,8 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	 * @return bool
 	 */
 	public function isDeserializerFor( $serialization ) {
-		$this->serialization = $serialization;
-
 		try {
-			$this->assertCanDeserialize();
+			$this->assertCanDeserialize( $serialization );
 			return true;
 		} catch ( RuntimeException $ex ) {
 			return false;
@@ -91,62 +87,46 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	 * @return DataValue
 	 */
 	public function deserialize( $serialization ) {
-		$this->serialization = $serialization;
-
-		$this->assertCanDeserialize();
-		return $this->getDeserialization();
+		$this->assertCanDeserialize( $serialization );
+		return $this->getDeserialization( $serialization );
 	}
 
-	private function assertCanDeserialize() {
-		$this->assertHasSupportedType();
-		$this->assertHasValue();
-	}
-
-	private function assertHasSupportedType() {
-		if ( !is_array( $this->serialization ) || !array_key_exists( self::TYPE_KEY, $this->serialization ) ) {
+	private function assertCanDeserialize( $serialization ) {
+		if ( !is_array( $serialization ) || !array_key_exists( self::TYPE_KEY, $serialization ) ) {
 			throw new MissingTypeException();
 		}
 
-		if ( !$this->hasSupportedType() ) {
-			throw new UnsupportedTypeException( $this->getType() );
-		}
-	}
-
-	private function assertHasValue() {
-		if ( !array_key_exists( self::VALUE_KEY, $this->serialization ) ) {
+		if ( !array_key_exists( self::VALUE_KEY, $serialization ) ) {
 			throw new MissingAttributeException( self::VALUE_KEY );
 		}
-	}
 
-	private function hasSupportedType() {
-		return array_key_exists( $this->getType(), $this->builders );
-	}
-
-	private function getType() {
-		return $this->serialization[self::TYPE_KEY];
+		$type = $serialization[self::TYPE_KEY];
+		if ( !array_key_exists( $type, $this->builders ) ) {
+			throw new UnsupportedTypeException( $type );
+		}
 	}
 
 	/**
+	 * @param array $serialization
+	 *
 	 * @throws DeserializationException
 	 * @return DataValue
 	 */
-	private function getDeserialization() {
-		$builder = $this->builders[$this->getType()];
+	private function getDeserialization( array $serialization ) {
+		$type = $serialization[self::TYPE_KEY];
+		$value = $serialization[self::VALUE_KEY];
+		$builder = $this->builders[$type];
 
 		try {
 			if ( is_callable( $builder ) ) {
-				return $builder( $this->getValue() );
+				return $builder( $value );
 			}
 
 			/** @var DataValue $builder */
-			return $builder::newFromArray( $this->getValue() );
+			return $builder::newFromArray( $value );
 		} catch ( InvalidArgumentException $ex ) {
 			throw new DeserializationException( $ex->getMessage(), $ex );
 		}
-	}
-
-	private function getValue() {
-		return $this->serialization[self::VALUE_KEY];
 	}
 
 }
