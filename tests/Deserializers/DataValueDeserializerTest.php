@@ -2,6 +2,7 @@
 
 namespace Tests\DataValues\Deserializers;
 
+use DataValues\BooleanValue;
 use DataValues\Deserializers\DataValueDeserializer;
 use DataValues\NumberValue;
 use DataValues\StringValue;
@@ -22,6 +23,9 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 
 	private function newDeserializer() {
 		return new DataValueDeserializer( array(
+			'boolean' => function( $bool ) {
+				return new BooleanValue( $bool );
+			},
 			'number' => 'DataValues\NumberValue',
 			'string' => 'DataValues\StringValue',
 		) );
@@ -180,10 +184,12 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function dataValueSerializationProvider() {
+		$boolean = new BooleanValue( false );
 		$string = new StringValue( 'foo bar baz' );
 		$number = new NumberValue( 42 );
 
 		return array(
+			array( $boolean->toArray(), 'boolean' ),
 			array( $string->toArray(), 'string' ),
 			array( $number->toArray(), 'number' ),
 		);
