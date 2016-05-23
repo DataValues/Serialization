@@ -5,14 +5,15 @@ namespace Tests\DataValues\Deserializers;
 use DataValues\Deserializers\DataValueDeserializer;
 use DataValues\NumberValue;
 use DataValues\StringValue;
+use PHPUnit_Framework_TestCase;
 
 /**
  * @covers DataValues\Deserializers\DataValueDeserializer
  *
- * @licence GNU GPL v2+
+ * @license GPL-2.0+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DataValueDeserializerTest extends \PHPUnit_Framework_TestCase {
+class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 
 	public function testGivenEmptyArray_isDeserializerForReturnsFalse() {
 		$deserializer = $this->newDeserializer();
