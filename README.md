@@ -51,8 +51,7 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ### 1.1.0 (2016-05-24)
 
-* `DataValueDeserializer` optionally accepts callbacks, in addition to full qualified DataValue
-  class names and assuming they implement a static `newFromArray` method.
+* Added support for builder functions to `DataValueDeserializer`
 
 ### 1.0.3 (2015-08-05)
 
