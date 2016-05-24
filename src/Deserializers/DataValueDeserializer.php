@@ -2,6 +2,7 @@
 
 namespace DataValues\Deserializers;
 
+use DataValues\DataValue;
 use Deserializers\DispatchableDeserializer;
 use Deserializers\Exceptions\DeserializationException;
 use Deserializers\Exceptions\MissingAttributeException;
@@ -15,6 +16,7 @@ use RuntimeException;
  *
  * @license GPL-2.0+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Thiemo Mättig
  */
 class DataValueDeserializer implements DispatchableDeserializer {
 
@@ -22,38 +24,48 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	const VALUE_KEY = 'value';
 
 	/**
-	 * @var string[] Associative array of data type id => DataValue class name.
+	 * @var array Associative array mapping data type IDs to either callables returning new
+	 *  DataValue objects, or full qualified DataValue class names.
 	 */
-	private $classes;
+	private $builders;
 
 	private $serialization;
 
 	/**
-	 * @param string[] $dataValueClasses Associative array of data type id => DataValue class name.
+	 * @since 0.1, callables are supported since 1.1
+	 *
+	 * @param array $builders Associative array mapping data type IDs to either callables, or full
+	 *  qualified class names. Callables must accept a single value as specified by the
+	 *  corresponding DataValue::getArrayValue, and return a new DataValue object. DataValue classes
+	 *  given via class name must implement a static newFromArray method doing the same.
 	 */
-	public function __construct( array $dataValueClasses = array() ) {
-		$this->assertAreDataValueClasses( $dataValueClasses );
-		$this->classes = $dataValueClasses;
+	public function __construct( array $builders = array() ) {
+		$this->assertAreDataValueClasses( $builders );
+		$this->builders = $builders;
 	}
 
-	private function assertAreDataValueClasses( array $classes ) {
-		foreach ( $classes as $typeId => $class ) {
-			if ( !is_string( $typeId ) || !$this->isDataValueClass( $class ) ) {
-				throw new InvalidArgumentException( '$dataValueClasses can only contain dataTypeId => dataValueClass' );
+	private function assertAreDataValueClasses( array $builders ) {
+		foreach ( $builders as $type => $builder ) {
+			if ( !is_string( $type )
+				|| ( !is_callable( $builder ) && !$this->isDataValueClass( $builder ) )
+			) {
+				throw new InvalidArgumentException( '$builders must map data types to callables or class names' );
 			}
 		}
 	}
 
 	private function isDataValueClass( $class ) {
-		return is_string( $class ) && $this->classDerivesFrom( $class, 'DataValues\DataValue' );
-	}
-
-	private function classDerivesFrom( $class, $superClass ) {
-		return class_exists( $class ) && in_array( $superClass, class_implements( $class ) );
+		return is_string( $class )
+			&& class_exists( $class )
+			&& in_array( 'DataValues\DataValue', class_implements( $class ) );
 	}
 
 	/**
 	 * @see DispatchableDeserializer::isDeserializerFor
+	 *
+	 * @param mixed $serialization
+	 *
+	 * @return bool
 	 */
 	public function isDeserializerFor( $serialization ) {
 		$this->serialization = $serialization;
@@ -69,6 +81,11 @@ class DataValueDeserializer implements DispatchableDeserializer {
 
 	/**
 	 * @see Deserializer::deserialize
+	 *
+	 * @param mixed $serialization
+	 *
+	 * @throws DeserializationException
+	 * @return DataValue
 	 */
 	public function deserialize( $serialization ) {
 		$this->serialization = $serialization;
@@ -99,28 +116,29 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	}
 
 	private function hasSupportedType() {
-		return array_key_exists( $this->getType(), $this->classes );
+		return array_key_exists( $this->getType(), $this->builders );
 	}
 
 	private function getType() {
 		return $this->serialization[self::TYPE_KEY];
 	}
 
+	/**
+	 * @throws DeserializationException
+	 * @return DataValue
+	 */
 	private function getDeserialization() {
-		$class = $this->getClass();
+		$builder = $this->builders[$this->getType()];
+
+		if ( is_callable( $builder ) ) {
+			return $builder( $this->getValue() );
+		}
 
 		try {
-			return $class::newFromArray( $this->getValue() );
+			return $builder::newFromArray( $this->getValue() );
 		} catch ( InvalidArgumentException $ex ) {
 			throw new DeserializationException( $ex->getMessage(), $ex );
 		}
-	}
-
-	/**
-	 * @return string
-	 */
-	private function getClass() {
-		return $this->classes[$this->getType()];
 	}
 
 	private function getValue() {
