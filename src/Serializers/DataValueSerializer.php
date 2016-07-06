@@ -16,6 +16,11 @@ class DataValueSerializer implements DispatchableSerializer {
 
 	/**
 	 * @see Serializer::serialize
+	 *
+	 * @param DataValue $object
+	 *
+	 * @throws UnsupportedObjectException
+	 * @return array|int|string|bool|float
 	 */
 	public function serialize( $object ) {
 		if ( $this->isSerializerFor( $object ) ) {

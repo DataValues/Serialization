@@ -82,7 +82,7 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	/**
 	 * @see Deserializer::deserialize
 	 *
-	 * @param mixed $serialization
+	 * @param array $serialization
 	 *
 	 * @throws DeserializationException
 	 * @return DataValue
