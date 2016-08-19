@@ -24,17 +24,13 @@ class DataValueSerializer implements DispatchableSerializer {
 	 */
 	public function serialize( $object ) {
 		if ( $this->isSerializerFor( $object ) ) {
-			return $this->getSerializedDataValue( $object );
+			return $object->toArray();
 		}
 
 		throw new UnsupportedObjectException(
 			$object,
 			'DataValueSerializer can only serialize DataValue objects'
 		);
-	}
-
-	protected function getSerializedDataValue( DataValue $dataValue ) {
-		return $dataValue->toArray();
 	}
 
 	/**
@@ -45,7 +41,7 @@ class DataValueSerializer implements DispatchableSerializer {
 	 * @return bool
 	 */
 	public function isSerializerFor( $object ) {
-		return is_object( $object ) && $object instanceof DataValue;
+		return $object instanceof DataValue;
 	}
 
 }
