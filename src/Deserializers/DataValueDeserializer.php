@@ -73,8 +73,7 @@ class DataValueDeserializer implements DispatchableDeserializer {
 		try {
 			$this->assertCanDeserialize();
 			return true;
-		}
-		catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException $ex ) {
 			return false;
 		}
 	}
