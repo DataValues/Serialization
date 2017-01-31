@@ -39,6 +39,10 @@ class DataValueSerializer implements DispatchableSerializer {
 
 	/**
 	 * @see DispatchableSerializer::isSerializerFor
+	 *
+	 * @param mixed $object
+	 *
+	 * @return bool
 	 */
 	public function isSerializerFor( $object ) {
 		return is_object( $object ) && $object instanceof DataValue;
