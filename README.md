@@ -49,6 +49,11 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.2.0 (2017-01-31)
+
+* Improved error reporting in the `DataValueDeserializer` constructor.
+* Added a basic PHPCS rule set, can be run with `composer phpcs`.
+
 ### 1.1.0 (2016-05-24)
 
 * Added support for builder functions to `DataValueDeserializer`
