@@ -20,7 +20,7 @@ class DataValueSerializer implements DispatchableSerializer {
 	 * @param DataValue $object
 	 *
 	 * @throws UnsupportedObjectException
-	 * @return array|int|string|bool|float
+	 * @return array
 	 */
 	public function serialize( $object ) {
 		if ( $this->isSerializerFor( $object ) ) {
