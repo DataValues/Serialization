@@ -49,6 +49,10 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.2.1 (dev)
+
+* Raised required PHP version from 5.3 to 5.5.
+
 ### 1.2.0 (2017-01-31)
 
 * Improved error reporting in the `DataValueDeserializer` constructor.
