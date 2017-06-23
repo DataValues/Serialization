@@ -6,6 +6,11 @@ use DataValues\BooleanValue;
 use DataValues\Deserializers\DataValueDeserializer;
 use DataValues\NumberValue;
 use DataValues\StringValue;
+use Deserializers\Exceptions\DeserializationException;
+use Deserializers\Exceptions\MissingAttributeException;
+use Deserializers\Exceptions\MissingTypeException;
+use Deserializers\Exceptions\UnsupportedTypeException;
+use InvalidArgumentException;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -53,7 +58,7 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider notADataValuesListProvider
 	 */
 	public function testGivenNonDataValues_constructorThrowsException( array $invalidDVList ) {
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( InvalidArgumentException::class );
 
 		new DataValueDeserializer( $invalidDVList );
 	}
@@ -92,14 +97,14 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	public function testGivenSerializationNoType_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( 'Deserializers\Exceptions\MissingTypeException' );
+		$this->setExpectedException( MissingTypeException::class );
 		$deserializer->deserialize( array() );
 	}
 
 	public function testGivenSerializationWithUnknownType_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( 'Deserializers\Exceptions\UnsupportedTypeException' );
+		$this->setExpectedException( UnsupportedTypeException::class );
 		$deserializer->deserialize(
 			array(
 				'type' => 'ohi'
@@ -110,7 +115,7 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	public function testGivenSerializationWithNoValue_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( 'Deserializers\Exceptions\MissingAttributeException' );
+		$this->setExpectedException( MissingAttributeException::class );
 		$deserializer->deserialize(
 			array(
 				'type' => 'number'
@@ -124,43 +129,20 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	public function testGivenInvalidDataValue_deserializeThrowsException( $invalidSerialization ) {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( 'Deserializers\Exceptions\DeserializationException' );
+		$this->setExpectedException( DeserializationException::class );
 		$deserializer->deserialize( $invalidSerialization );
 	}
 
 	public function invalidDataValueSerializationProvider() {
-		return array(
-			array(
-				'foo'
-			),
-
-			array(
-				null
-			),
-
-			array(
-				array()
-			),
-
-			array(
-				array(
-					'hax'
-				)
-			),
-
-			array(
-				array(
-					'type' => 'hax'
-				)
-			),
-
-			array(
-				array(
-					'type' => 'number',
-					'value' => array()
-				)
-			),
-		);
+		return [
+			[ 'foo' ],
+			[ null ],
+			[ [] ],
+			[ [ 'hax' ] ],
+			[ [ 'type' => 'hax' ] ],
+			[ [ 'type' => 'number', 'value' => [] ] ],
+			[ [ 'type' => 'boolean', 'value' => 'not a boolean' ] ],
+		];
 	}
 
 	public function testInvalidValueSerialization_throwsDeserializationException() {
@@ -171,7 +153,7 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$deserializer = $this->newDeserializer();
-		$this->setExpectedException( 'Deserializers\Exceptions\DeserializationException' );
+		$this->setExpectedException( DeserializationException::class );
 		$deserializer->deserialize( $serialization );
 	}
 
