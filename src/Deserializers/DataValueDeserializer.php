@@ -138,7 +138,14 @@ class DataValueDeserializer implements DispatchableDeserializer {
 		}
 
 		try {
-			return $builder::newFromArray( $this->getValue() );
+			$value = $this->getValue();
+
+			if ( !is_array( $value ) ) {
+				throw new DeserializationException( '$value must be an array but is '
+					. gettype( $value ) );
+			}
+
+			return $builder::newFromArray( $value );
 		} catch ( InvalidArgumentException $ex ) {
 			throw new DeserializationException( $ex->getMessage(), $ex );
 		}
