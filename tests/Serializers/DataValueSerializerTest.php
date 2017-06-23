@@ -7,6 +7,7 @@ use DataValues\NumberValue;
 use DataValues\Serializers\DataValueSerializer;
 use DataValues\StringValue;
 use PHPUnit_Framework_TestCase;
+use Serializers\Exceptions\SerializationException;
 
 /**
  * @covers DataValues\Serializers\DataValueSerializer
@@ -60,7 +61,7 @@ class DataValueSerializerTest extends PHPUnit_Framework_TestCase {
 	public function testWhenGivenNonDataValue_SerializeThrowsException( $notAnObject ) {
 		$serializer = new DataValueSerializer();
 
-		$this->setExpectedException( 'Serializers\Exceptions\SerializationException' );
+		$this->setExpectedException( SerializationException::class );
 		$serializer->serialize( $notAnObject );
 	}
 
@@ -69,7 +70,7 @@ class DataValueSerializerTest extends PHPUnit_Framework_TestCase {
 
 		$serializer = new DataValueSerializer();
 
-		$dataValue = $this->getMock( 'DataValues\DataValue' );
+		$dataValue = $this->getMock( DataValue::class );
 		$dataValue->expects( $this->once() )
 			->method( 'toArray' )
 			->will( $this->returnValue( $returnValue ) );

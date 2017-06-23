@@ -61,7 +61,7 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	private function isDataValueClass( $class ) {
 		return is_string( $class )
 			&& class_exists( $class )
-			&& in_array( 'DataValues\DataValue', class_implements( $class ) );
+			&& in_array( DataValue::class, class_implements( $class ) );
 	}
 
 	/**
