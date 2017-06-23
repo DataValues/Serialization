@@ -3,6 +3,7 @@
 namespace Tests\DataValues\Deserializers;
 
 use DataValues\BooleanValue;
+use DataValues\DataValue;
 use DataValues\Deserializers\DataValueDeserializer;
 use DataValues\NumberValue;
 use DataValues\StringValue;
@@ -31,8 +32,8 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 			'boolean' => function( $bool ) {
 				return new BooleanValue( $bool );
 			},
-			'number' => 'DataValues\NumberValue',
-			'string' => 'DataValues\StringValue',
+			'number' => NumberValue::class,
+			'string' => StringValue::class,
 		) );
 	}
 
@@ -81,13 +82,13 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 			),
 			array(
 				array(
-					'string' => 'DataValues\StringValue',
+					'string' => StringValue::class,
 					'number' => 42,
 				)
 			),
 			array(
 				array(
-					'string' => 'DataValues\StringValue',
+					'string' => StringValue::class,
 					'object' => 'stdClass',
 				)
 			)
@@ -185,7 +186,7 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 
 		$dataValue = $deserializer->deserialize( $dvSerialization );
 
-		$this->assertInstanceOf( 'DataValues\DataValue', $dataValue );
+		$this->assertInstanceOf( DataValue::class, $dataValue );
 		$this->assertEquals( $expectedType, $dataValue->getType() );
 	}
 
