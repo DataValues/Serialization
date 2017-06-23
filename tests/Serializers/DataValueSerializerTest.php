@@ -27,16 +27,16 @@ class DataValueSerializerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function notADataValueProvider() {
-		return array(
-			array( 0 ),
-			array( null ),
-			array( '' ),
-			array( array() ),
-			array( true ),
-			array( 4.2 ),
-			array( (object)array() ),
-			array( new \Exception() ),
-		);
+		return [
+			[ 0 ],
+			[ null ],
+			[ '' ],
+			[ [] ],
+			[ true ],
+			[ 4.2 ],
+			[ new \stdClass() ],
+			[ new \Exception() ],
+		];
 	}
 
 	/**
@@ -49,10 +49,10 @@ class DataValueSerializerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function dataValueProvider() {
-		return array(
-			array( new StringValue( 'foo' ) ),
-			array( new NumberValue( 42 ) ),
-		);
+		return [
+			[ new StringValue( 'foo' ) ],
+			[ new NumberValue( 42 ) ],
+		];
 	}
 
 	/**
