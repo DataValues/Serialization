@@ -133,11 +133,12 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	private function getDeserialization() {
 		$builder = $this->builders[$this->getType()];
 
-		if ( is_callable( $builder ) ) {
-			return $builder( $this->getValue() );
-		}
-
 		try {
+			if ( is_callable( $builder ) ) {
+				return $builder( $this->getValue() );
+			}
+
+			/** @var DataValue $builder */
 			return $builder::newFromArray( $this->getValue() );
 		} catch ( InvalidArgumentException $ex ) {
 			throw new DeserializationException( $ex->getMessage(), $ex );

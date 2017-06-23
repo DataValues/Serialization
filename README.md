@@ -49,9 +49,11 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
-### 1.2.1 (dev)
+### 1.2.1 (2017-06-23)
 
-* Raised required PHP version from 5.3 to 5.5.
+* Fixed `DataValueDeserializer` not always turning internal `InvalidArgumentException` into
+  `DeserializationException`, as documented.
+* Raised required PHP version from 5.3 to 5.5.9.
 
 ### 1.2.0 (2017-01-31)
 
