@@ -108,6 +108,7 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 		$this->setExpectedException( UnsupportedTypeException::class );
 		$deserializer->deserialize(
 			array(
+				'value' => null,
 				'type' => 'ohi'
 			)
 		);
