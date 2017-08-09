@@ -38,6 +38,8 @@
 		</properties>
 	</rule>
 
+	<file>.</file>
+	<exclude-pattern type="relative">^vendor/</exclude-pattern>
 	<arg name="extensions" value="php" />
 	<arg name="encoding" value="utf8" />
 </ruleset>
