@@ -45,11 +45,8 @@
 	"scripts": {
 		"test": [
 			"@validate --no-interaction",
-			"@phpcs",
+			"phpcs -p -s",
 			"phpunit"
-		],
-		"phpcs": [
-			"phpcs src/* tests/* --standard=phpcs.xml -sp"
 		]
 	}
 }
