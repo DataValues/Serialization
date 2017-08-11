@@ -37,7 +37,7 @@ class DataValueDeserializer implements DispatchableDeserializer {
 	 *  corresponding DataValue::getArrayValue, and return a new DataValue object. DataValue classes
 	 *  given via class name must implement a static newFromArray method doing the same.
 	 */
-	public function __construct( array $builders = array() ) {
+	public function __construct( array $builders = [] ) {
 		$this->assertAreDataValueClasses( $builders );
 		$this->builders = $builders;
 	}

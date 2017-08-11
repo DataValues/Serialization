@@ -24,17 +24,17 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 
 	public function testGivenEmptyArray_isDeserializerForReturnsFalse() {
 		$deserializer = $this->newDeserializer();
-		$this->assertFalse( $deserializer->isDeserializerFor( array() ) );
+		$this->assertFalse( $deserializer->isDeserializerFor( [] ) );
 	}
 
 	private function newDeserializer() {
-		return new DataValueDeserializer( array(
+		return new DataValueDeserializer( [
 			'boolean' => function( $bool ) {
 				return new BooleanValue( $bool );
 			},
 			'number' => NumberValue::class,
 			'string' => StringValue::class,
-		) );
+		] );
 	}
 
 	/**
@@ -46,13 +46,13 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function notAnArrayProvider() {
-		return array(
-			array( null ),
-			array( 0 ),
-			array( true ),
-			array( (object)array() ),
-			array( 'foo' ),
-		);
+		return [
+			[ null ],
+			[ 0 ],
+			[ true ],
+			[ new \stdClass() ],
+			[ 'foo' ],
+		];
 	}
 
 	/**
@@ -65,64 +65,55 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function notADataValuesListProvider() {
-		return array(
-			array(
-				array(
+		return [
+			[
+				[
 					'foo',
 					null,
-					array(),
+					[],
 					true,
 					42,
-				)
-			),
-			array(
-				array(
+				]
+			],
+			[
+				[
 					'string' => 'foo',
-				)
-			),
-			array(
-				array(
+				]
+			],
+			[
+				[
 					'string' => StringValue::class,
 					'number' => 42,
-				)
-			),
-			array(
-				array(
+				]
+			],
+			[
+				[
 					'string' => StringValue::class,
 					'object' => 'stdClass',
-				)
-			)
-		);
+				]
+			]
+		];
 	}
 
 	public function testGivenSerializationNoType_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
 		$this->setExpectedException( MissingTypeException::class );
-		$deserializer->deserialize( array() );
+		$deserializer->deserialize( [] );
 	}
 
 	public function testGivenSerializationWithUnknownType_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
 		$this->setExpectedException( UnsupportedTypeException::class );
-		$deserializer->deserialize(
-			array(
-				'value' => null,
-				'type' => 'ohi'
-			)
-		);
+		$deserializer->deserialize( [ 'type' => 'ohi', 'value' => null ] );
 	}
 
 	public function testGivenSerializationWithNoValue_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
 		$this->setExpectedException( MissingAttributeException::class );
-		$deserializer->deserialize(
-			array(
-				'type' => 'number'
-			)
-		);
+		$deserializer->deserialize( [ 'type' => 'number' ] );
 	}
 
 	/**
@@ -148,11 +139,11 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testInvalidValueSerialization_throwsDeserializationException() {
-		$serialization = array(
-			'value' => array( 0, 0 ),
+		$serialization = [
+			'value' => [ 0, 0 ],
 			'type' => 'string',
 			'error' => 'omg an error!'
-		);
+		];
 
 		$deserializer = $this->newDeserializer();
 		$this->setExpectedException( DeserializationException::class );
@@ -172,11 +163,11 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 		$string = new StringValue( 'foo bar baz' );
 		$number = new NumberValue( 42 );
 
-		return array(
-			array( $boolean->toArray(), 'boolean' ),
-			array( $string->toArray(), 'string' ),
-			array( $number->toArray(), 'number' ),
-		);
+		return [
+			[ $boolean->toArray(), 'boolean' ],
+			[ $string->toArray(), 'string' ],
+			[ $number->toArray(), 'number' ],
+		];
 	}
 
 	/**
