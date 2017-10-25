@@ -1,12 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="DataValuesSerialization">
-	<rule ref="vendor/wikibase/wikibase-codesniffer/Wikibase" />
-
-	<rule ref="Generic.Files.LineLength">
-		<properties>
-			<property name="lineLimit" value="113" />
-		</properties>
-	</rule>
+<ruleset>
+	<rule ref="./vendor/wikibase/wikibase-codesniffer/Wikibase" />
 
 	<file>.</file>
 </ruleset>
