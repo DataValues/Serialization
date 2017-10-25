@@ -51,7 +51,7 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ### 1.2.2 (2017-10-25)
 
-* Made component installable together Serialization 4.x
+* Made component installable together with Serialization 4.x
 
 ### 1.2.1 (2017-06-26)
 
