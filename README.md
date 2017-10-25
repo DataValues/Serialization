@@ -49,6 +49,10 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.2.2 (2017-10-25)
+
+* Made component installable together Serialization 4.x
+
 ### 1.2.1 (2017-06-26)
 
 * Fixed `DataValueDeserializer` not always turning internal `InvalidArgumentException` into

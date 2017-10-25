@@ -173,7 +173,10 @@ class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider dataValueSerializationProvider
 	 */
-	public function testGivenDataValueSerialization_deserializeReturnsDataValue( $dvSerialization, $expectedType ) {
+	public function testGivenDataValueSerialization_deserializeReturnsDataValue(
+		$dvSerialization,
+		$expectedType
+	) {
 		$deserializer = $this->newDeserializer();
 
 		$dataValue = $deserializer->deserialize( $dvSerialization );
