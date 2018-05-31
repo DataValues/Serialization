@@ -10,7 +10,7 @@ use PHPUnit_Framework_TestCase;
 use Serializers\Exceptions\SerializationException;
 
 /**
- * @covers DataValues\Serializers\DataValueSerializer
+ * @covers \DataValues\Serializers\DataValueSerializer
  *
  * @license GPL-2.0+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
