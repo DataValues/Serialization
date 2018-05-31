@@ -15,7 +15,7 @@ use InvalidArgumentException;
 use PHPUnit_Framework_TestCase;
 
 /**
- * @covers DataValues\Deserializers\DataValueDeserializer
+ * @covers \DataValues\Deserializers\DataValueDeserializer
  *
  * @license GPL-2.0+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
