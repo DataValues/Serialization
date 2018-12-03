@@ -48,6 +48,10 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.2.3 (2018-12-01)
+
+* Made component installable together with DataValues 2.x
+
 ### 1.2.2 (2017-10-25)
 
 * Made component installable together with Serialization 4.x
