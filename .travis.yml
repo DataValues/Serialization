@@ -6,7 +6,7 @@ php:
   - 7.0
   - 7.1
   - 7.2
-  - hhvm
+  - 7.3
 
 before_script:
   - composer install --prefer-source
@@ -14,7 +14,7 @@ before_script:
 script: composer test
 
 after_success:
-  - if [[ "`phpenv version-name`" != "7.1" ]]; then exit 0; fi
+  - if [[ "`phpenv version-name`" != "7.3" ]]; then exit 0; fi
   - phpunit --coverage-clover coverage.clover
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
