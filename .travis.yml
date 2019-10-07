@@ -14,7 +14,7 @@ script: composer test
 
 after_success:
   - if [[ "`phpenv version-name`" != "7.3" ]]; then exit 0; fi
-  - phpunit --coverage-clover coverage.clover
+  - vendor/bin/phpunit --coverage-clover coverage.clover
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
