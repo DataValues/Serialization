@@ -12,15 +12,15 @@ use Deserializers\Exceptions\MissingAttributeException;
 use Deserializers\Exceptions\MissingTypeException;
 use Deserializers\Exceptions\UnsupportedTypeException;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \DataValues\Deserializers\DataValueDeserializer
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DataValueDeserializerTest extends PHPUnit_Framework_TestCase {
+class DataValueDeserializerTest extends TestCase {
 
 	public function testGivenEmptyArray_isDeserializerForReturnsFalse() {
 		$deserializer = $this->newDeserializer();
