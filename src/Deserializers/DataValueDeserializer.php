@@ -20,8 +20,8 @@ use RuntimeException;
  */
 class DataValueDeserializer implements DispatchableDeserializer {
 
-	const TYPE_KEY = 'type';
-	const VALUE_KEY = 'value';
+	public const TYPE_KEY = 'type';
+	public const VALUE_KEY = 'value';
 
 	/**
 	 * @var array Associative array mapping data type IDs to either callables returning new
