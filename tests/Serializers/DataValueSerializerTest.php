@@ -6,16 +6,16 @@ use DataValues\DataValue;
 use DataValues\NumberValue;
 use DataValues\Serializers\DataValueSerializer;
 use DataValues\StringValue;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Serializers\Exceptions\SerializationException;
 
 /**
  * @covers \DataValues\Serializers\DataValueSerializer
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DataValueSerializerTest extends PHPUnit_Framework_TestCase {
+class DataValueSerializerTest extends TestCase {
 
 	/**
 	 * @dataProvider notADataValueProvider

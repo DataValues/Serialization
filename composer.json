@@ -23,13 +23,13 @@
 		"irc": "irc://irc.freenode.net/wikidata"
 	},
 	"require": {
-		"php": ">=5.5.9",
+		"php": ">=7.2",
 		"data-values/data-values": "~2.0|~1.0|~0.1",
 		"serialization/serialization": "~4.0|~3.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.8",
-		"wikibase/wikibase-codesniffer": "^0.2.0"
+		"wikibase/wikibase-codesniffer": "^1.2.0"
 	},
 	"autoload": {
 		"psr-4": {
