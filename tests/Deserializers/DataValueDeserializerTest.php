@@ -59,7 +59,7 @@ class DataValueDeserializerTest extends TestCase {
 	 * @dataProvider notADataValuesListProvider
 	 */
 	public function testGivenNonDataValues_constructorThrowsException( array $invalidDVList ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 
 		new DataValueDeserializer( $invalidDVList );
 	}
@@ -98,21 +98,21 @@ class DataValueDeserializerTest extends TestCase {
 	public function testGivenSerializationNoType_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( MissingTypeException::class );
+		$this->expectException( MissingTypeException::class );
 		$deserializer->deserialize( [] );
 	}
 
 	public function testGivenSerializationWithUnknownType_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( UnsupportedTypeException::class );
+		$this->expectException( UnsupportedTypeException::class );
 		$deserializer->deserialize( [ 'type' => 'ohi', 'value' => null ] );
 	}
 
 	public function testGivenSerializationWithNoValue_deserializeThrowsException() {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( MissingAttributeException::class );
+		$this->expectException( MissingAttributeException::class );
 		$deserializer->deserialize( [ 'type' => 'number' ] );
 	}
 
@@ -122,7 +122,7 @@ class DataValueDeserializerTest extends TestCase {
 	public function testGivenInvalidDataValue_deserializeThrowsException( $invalidSerialization ) {
 		$deserializer = $this->newDeserializer();
 
-		$this->setExpectedException( DeserializationException::class );
+		$this->expectException( DeserializationException::class );
 		$deserializer->deserialize( $invalidSerialization );
 	}
 
@@ -146,7 +146,7 @@ class DataValueDeserializerTest extends TestCase {
 		];
 
 		$deserializer = $this->newDeserializer();
-		$this->setExpectedException( DeserializationException::class );
+		$this->expectException( DeserializationException::class );
 		$deserializer->deserialize( $serialization );
 	}
 

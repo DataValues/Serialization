@@ -61,7 +61,7 @@ class DataValueSerializerTest extends TestCase {
 	public function testWhenGivenNonDataValue_SerializeThrowsException( $notAnObject ) {
 		$serializer = new DataValueSerializer();
 
-		$this->setExpectedException( SerializationException::class );
+		$this->expectException( SerializationException::class );
 		$serializer->serialize( $notAnObject );
 	}
 
@@ -70,7 +70,7 @@ class DataValueSerializerTest extends TestCase {
 
 		$serializer = new DataValueSerializer();
 
-		$dataValue = $this->getMock( DataValue::class );
+		$dataValue = $this->createMock( DataValue::class );
 		$dataValue->expects( $this->once() )
 			->method( 'toArray' )
 			->will( $this->returnValue( $returnValue ) );
