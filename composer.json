@@ -28,7 +28,7 @@
 		"serialization/serialization": "~4.0|~3.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "~4.8",
+		"phpunit/phpunit": "~8.5",
 		"wikibase/wikibase-codesniffer": "^1.2.0"
 	},
 	"autoload": {
