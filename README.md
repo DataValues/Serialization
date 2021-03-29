@@ -47,6 +47,10 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.3.0 (2021-03-29)
+
+* Made component installable together with DataValues 3.x
+
 ### 1.2.3 (2018-12-01)
 
 * Made component installable together with DataValues 2.x
