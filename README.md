@@ -50,6 +50,7 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 ### 1.2.4 (2021-03-29)
 
 * Made component installable together with DataValues 3.x
+* Raised required PHP version to 7.2
 
 ### 1.2.3 (2018-12-01)
 
