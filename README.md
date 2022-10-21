@@ -47,6 +47,10 @@ as [Wikimedia Germany](https://wikimedia.de) employee for the [Wikidata project]
 
 ## Release notes
 
+### 1.2.5 (2022-10-21)
+
+* Added a message to a possible deserialization exception.
+
 ### 1.2.4 (2021-03-29)
 
 * Made component installable together with DataValues 3.x
