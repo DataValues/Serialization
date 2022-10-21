@@ -4,8 +4,8 @@ Serializers and deserializers for DataValue implementations.
 
 It is part of the [DataValues set of libraries](https://github.com/DataValues).
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DataValues/Serialization/PHP%20Composer)](https://github.com/DataValues/Serialization/actions?query=workflow%3A"PHP+Composer")
 [![Code Coverage](https://scrutinizer-ci.com/g/DataValues/Serialization/badges/coverage.png?s=3e52443ffbf18b98804feb7c02ba4416f3f986cb)](https://scrutinizer-ci.com/g/DataValues/Serialization/)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/DataValues/Serialization/badges/quality-score.png?s=818787ea88853bbfb76dc226eb4ab755729141c5)](https://scrutinizer-ci.com/g/DataValues/Serialization/)
 
 On [Packagist](https://packagist.org/packages/data-values/serialization):
 [![Latest Stable Version](https://poser.pugx.org/data-values/serialization/version.png)](https://packagist.org/packages/data-values/serialization)
