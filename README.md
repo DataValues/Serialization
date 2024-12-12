@@ -4,12 +4,12 @@ Serializers and deserializers for DataValue implementations.
 
 It is part of the [DataValues set of libraries](https://github.com/DataValues).
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DataValues/Serialization/PHP%20Composer)](https://github.com/DataValues/Serialization/actions?query=workflow%3A"PHP+Composer")
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/DataValues/Serialization/php.yml?branch=master)](https://github.com/DataValues/Serialization/actions?query=workflow%3Aphp)
 [![Code Coverage](https://scrutinizer-ci.com/g/DataValues/Serialization/badges/coverage.png?s=3e52443ffbf18b98804feb7c02ba4416f3f986cb)](https://scrutinizer-ci.com/g/DataValues/Serialization/)
 
-On [Packagist](https://packagist.org/packages/data-values/serialization):
-[![Latest Stable Version](https://poser.pugx.org/data-values/serialization/version.png)](https://packagist.org/packages/data-values/serialization)
-[![Download count](https://poser.pugx.org/data-values/serialization/d/total.png)](https://packagist.org/packages/data-values/serialization)
+On [Packagist](https://packagist.org/packages/data-values/geo):
+[![Latest Stable Version](https://poser.pugx.org/data-values/serialization/v/stable)](https://packagist.org/packages/data-values/serialization)
+[![Download count](https://poser.pugx.org/data-values/serialization/downloads)](https://packagist.org/packages/data-values/serialization)
 
 ## Installation
 
