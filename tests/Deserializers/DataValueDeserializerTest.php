@@ -29,7 +29,7 @@ class DataValueDeserializerTest extends TestCase {
 
 	private function newDeserializer() {
 		return new DataValueDeserializer( [
-			'boolean' => function( $bool ) {
+			'boolean' => static function ( $bool ) {
 				return new BooleanValue( $bool );
 			},
 			'number' => NumberValue::class,

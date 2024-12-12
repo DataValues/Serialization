@@ -73,7 +73,7 @@ class DataValueSerializerTest extends TestCase {
 		$dataValue = $this->createMock( DataValue::class );
 		$dataValue->expects( $this->once() )
 			->method( 'toArray' )
-			->will( $this->returnValue( $returnValue ) );
+			->willReturn( $returnValue );
 
 		$this->assertEquals( $returnValue, $serializer->serialize( $dataValue ) );
 	}
