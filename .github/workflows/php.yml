@@ -21,7 +21,7 @@ jobs:
           - '8.4'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 2
 
@@ -34,7 +34,7 @@ jobs:
       run: composer validate
 
     - name: Cache Composer cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.composer/cache
         key: composer-cache-php${{ matrix.php }}
